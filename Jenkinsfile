@@ -16,12 +16,10 @@ pipeline {
             steps {
                 git(
                     url: 'https://github.com/rpshjha/jenkins_demo.git',
-                    credentialsId: 'xpc',
-                    branch: "${main}"
+//                  credentialsId: 'credentialsId',
+                    branch: "main"
                 )
                 
-
-                checkout([$class: 'GitSCM', branches: [[name: '*/branchname']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: 'jenkins-user-github', url: 'https://github.com/aakashsehgal/FMU.git']]])
                 sh "ls -lart ./*"
             }
         }
