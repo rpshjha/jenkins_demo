@@ -41,15 +41,13 @@ pipeline {
         stage('deploy') {
               steps {
                     echo 'deploy the application'
-              
+
               }
         }
 
-        stage('Priting All Global Variables') {
+        stage('Publish') {
             steps {
-                sh """
-                env
-                """
+                sh './mvnw package'
             }
         }
 
