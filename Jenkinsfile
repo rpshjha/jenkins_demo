@@ -49,6 +49,11 @@ pipeline {
             steps {
                 sh './mvnw package'
             }
+            post {
+                success {
+                    archiveArtifacts 'target/*.jar'
+                }
+            }
         }
 
     }
