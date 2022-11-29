@@ -24,29 +24,25 @@ pipeline {
 
     stages {
 
-        stage('Cleanup Workspace') {
+        stage('build') {
             steps {
-                cleanWs()
-                sh """
-                echo "Cleaned Up Workspace for ${APP_NAME}"
-                """
-            }
-        }
-
-        stage('Code Checkout') {
-            steps {
-                checkout([
-                    $class: 'GitSCM',
-                    branches: [[name: '*/master']],
-                    userRemoteConfigs: [[url: 'https://github.com/spring-projects/spring-petclinic.git']]
-                ])
-            }
-        }
-
-        stage('Code Build') {
-            steps {
+                 echo 'building the application'
                  sh 'mvn install -Dmaven.test.skip=true'
             }
+        }
+
+        stage('test') {
+             steps {
+                   echo 'test the application'
+
+             }
+        }
+
+        stage('deploy') {
+              steps {
+                    echo 'deploy the application'
+              
+              }
         }
 
         stage('Priting All Global Variables') {
