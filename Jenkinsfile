@@ -10,19 +10,21 @@ pipeline {
         maven 'maven3'
     }
 
-    options {
-        buildDiscarder logRotator(
-                    daysToKeepStr: '15',
-                    numToKeepStr: '10'
-            )
-    }
-
-    environment {
-        APP_NAME = "DCUBE_APP",
-        APP_ENV  = "DEV"
-    }
-
     stages {
+
+        stage('Checkout') {
+            steps {
+                git(
+                    url: 'https://github.com/rpshjha/jenkins_demo.git',
+                    credentialsId: 'xpc',
+                    branch: "${main}"
+                )
+                
+
+                checkout([$class: 'GitSCM', branches: [[name: '*/branchname']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: 'jenkins-user-github', url: 'https://github.com/aakashsehgal/FMU.git']]])
+                sh "ls -lart ./*"
+            }
+        }
 
         stage('build') {
             steps {
@@ -33,7 +35,7 @@ pipeline {
 
         stage('test') {
              steps {
-                   echo 'test the application'
+                    echo 'test the application'
 
              }
         }
