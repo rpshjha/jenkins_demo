@@ -1,10 +1,10 @@
 pipeline {
 
-//     agent {
-//         node {
-//             label 'devops'
-//         }
-//     }
+    agent {
+        node {
+            label 'devops'
+        }
+    }
 
     stages {
 
