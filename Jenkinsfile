@@ -1,10 +1,6 @@
 pipeline {
 
-    agent {
-        node {
-            label 'devops'
-        }
-    }
+    agent any
     tools {
         maven 'Maven'
     }
