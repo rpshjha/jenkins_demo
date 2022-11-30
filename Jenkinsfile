@@ -5,6 +5,9 @@ pipeline {
             label 'devops'
         }
     }
+    tools {
+        maven 'Maven'
+    }
 
     stages {
 
