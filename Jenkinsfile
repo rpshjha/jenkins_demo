@@ -22,7 +22,12 @@ pipeline {
         stage('build') {
             steps {
                  echo 'building the application'
-                 sh 'mvn install -Dmaven.test.skip=true'
+                 sh 'mvn -f hellocucumber/pom.xml clean install'
+            }
+            post {
+               success {
+                    echo 'Build success'
+               }
             }
         }
 
