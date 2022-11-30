@@ -47,7 +47,7 @@ pipeline {
 
         stage('Publish') {
             steps {
-                sh './mvnw package'
+                sh 'mvn -f hellocucumber package'
             }
             post {
                 success {
